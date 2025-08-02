@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SimShare - Coming Soon</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e4f5e9, #b9e6c9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 90%;
+    }
+    .logo {
+      width: 140px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .logo:hover { transform: scale(1.05) rotate(-2deg); }
+    h1 { font-size: 2.2em; color: #222; margin-top: 20px; }
+    p { font-size: 1.1em; color: #555; margin-top: 10px; }
+
+    .countdown { font-size: 1.5em; margin: 20px 0; color: #2e7d32; }
+    input[type="email"] {
+      padding: 10px;
+      width: 70%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 18px;
+      margin-left: 10px;
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .socials {
+      margin-top: 20px;
+    }
+    .socials a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #4caf50;
+      font-weight: 600;
+    }
+    .testimonials {
+      margin-top: 30px;
+      font-style: italic;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="simshare-logo.png" alt="SimShare Logo" class="logo" onclick="handleEasterEgg()" />
+    <h1>Coming Soon</h1>
+    <div class="countdown" id="countdown">Loading countdown...</div>
+    <p>We're teeing up something big. Be the first to know when we launch.</p>
+    <form onsubmit="storeEmail(); return false;">
+      <input type="email" id="emailInput" placeholder="Enter your email" required />
+      <button type="submit">Notify Me</button>
+    </form>
+    <div class="socials">
+      <a href="https://instagram.com/simsharegolf" target="_blank">Instagram</a>
+      <a href="https://www.linkedin.com/company/107771617/" target="_blank">LinkedIn</a>
+    </div>
+    <div class="testimonials">
+      <p>"SimShare is about to revolutionize off-season golf!"</p>
+      <p>"A brilliant way to make simulators accessible to all."</p>
+    </div>
+  </div>
+
+  <script>
+    // Countdown to Jan 1, 2026
+    const targetDate = new Date("2026-01-01T00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+
+    // Store email (locally in this example)
+    function storeEmail() {
+      const email = document.getElementById("emailInput").value;
+      console.log("Captured email:", email); // Replace this with backend integration if needed
+      alert("Thanks! We'll notify you at launch.");
+      document.getElementById("emailInput").value = "";
+    }
+
+    // Easter Egg: bounce animation
+    let clickCount = 0;
+    function handleEasterEgg() {
+      clickCount++;
+      if (clickCount === 5) {
+        alert("⛳ Easter Egg Unlocked: Hole in One!");
+        clickCount = 0;
+      }
+    }
+  </script>
+</body>
+</html>
+
